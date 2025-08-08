@@ -70,3 +70,14 @@
       scrollbar-width: none;
       
     }
+
+    .welcome-message{
+      color: rgb(120, 120, 120);
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .loading{
+      height: 40px;
+      margin: -15px;
+    }

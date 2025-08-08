@@ -35,7 +35,7 @@
         setChatMessages(newChatMessage);
         setChatMessages([
           ...newChatMessage, {
-            message: 'Loading...',
+            message: <img src="loading-spinner.gif" className="loading"/>,
             sender: 'robot',
             id: crypto.randomUUID()
           }
@@ -99,7 +99,7 @@
       //  )
       // }
       return (
-        <div className={sender==='user'?'chat-message-user':'chat-message-robot'}>
+        <div className={sender === 'user' ? 'chat-message-user' : 'chat-message-robot'}>
           {sender === 'robot' && <img src="robot.png" className="chat-message-profile" />}
           <div className='chat-message-text'>{message}</div>
           {sender === 'user' && <img src="user.png" className="chat-message-profile" />}
@@ -109,10 +109,10 @@
 
     function ChatMessages({ chatMessages }) {
 
-      const chatMessagesRef= React.useRef(null);
+      const chatMessagesRef = React.useRef(null);
 
 
-      React.useEffect(()=>{
+      React.useEffect(() => {
         const containerElem = chatMessagesRef.current;
         if (containerElem) {
           containerElem.scrollTop = containerElem.scrollHeight;
@@ -121,6 +121,8 @@
 
       return (
         <div className="chat-messages-container" ref={chatMessagesRef}>
+          {chatMessages.length === 0 && <p className="welcome-message">Welcome to the chatbot project! Send a message using the textbox below.</p>}
+
           {chatMessages.map((chatMessages) => {
             return (
               <ChatMessage
@@ -135,31 +137,7 @@
     }
 
     function App() {
-      const [chatMessages, setChatMessages] = React.useState([
-        {
-          message: 'hello chatbot',
-          sender: 'user',
-          id: 'id1'
-        },
-
-        {
-          message: 'Hello! How can I help you?',
-          sender: 'robot',
-          id: 'id2'
-        },
-
-        {
-          message: 'Tell me todays date?',
-          sender: 'user',
-          id: 'id3'
-        },
-
-        {
-          message: 'Today is 4 August',
-          sender: 'robot',
-          id: 'id4'
-        }
-      ]);
+      const [chatMessages, setChatMessages] = React.useState([]);
       //const [chatMessages, setChatMessages] = array//Array Destructuring
       //const chatMessages = array[0];
       //const setChatMessages = array[1];
